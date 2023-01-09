@@ -6,6 +6,7 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 
+import dataModel.OD.EventRates;
 import dataModel.OD.Location;
 import dataModel.OD.Market;
 import dataModel.OD.Operator;
@@ -152,6 +153,25 @@ public class XML_Operations {
 		return guest;
 	}
 
+	public EventRates getEventRatesTestData() {
+		JAXBContext jaxbContext;
+		EventRates eventRates= null;
+		File xmlFile = new File("src\\test\\java\\testData\\OD\\EventRates.xml");
+
+		try {
+			jaxbContext = JAXBContext.newInstance(EventRates.class);
+			Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+			eventRates= (EventRates) jaxbUnmarshaller.unmarshal(xmlFile);
+			// System.out.println(eventRates);
+		}
+
+		catch (JAXBException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return eventRates;
+	}
+	
 	/*
 	 * This method is to load the data from XML file and bind it to the respective
 	 * JAVA object
@@ -235,6 +255,7 @@ public class XML_Operations {
 				e.printStackTrace();
 			}
 			return market;
+			
 		case "venue":
 			Venue venue = null;
 			xmlFile = new File("src\\test\\java\\testdata\\OD\\Venue.xml");
@@ -250,6 +271,24 @@ public class XML_Operations {
 				e.printStackTrace();
 			}
 			return venue;
+			
+		case "eventRates":
+			EventRates eventRates = null;
+			xmlFile = new File("src\\\\test\\\\java\\\\testData\\\\OD\\\\EventRates.xml");
+			
+			try {
+				jaxbContext = JAXBContext.newInstance(EventRates.class);
+				Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+				eventRates = (EventRates)jaxbUnmarshaller.unmarshal(xmlFile);
+
+			}
+
+			catch (JAXBException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return eventRates;
+			
 		}
 
 		return null;

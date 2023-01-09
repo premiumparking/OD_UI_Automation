@@ -106,6 +106,19 @@ public class OD_HomePage extends BaseClass {
 		return new OD_BusinessAccountsPage();
 	}
 
+	
+	/*
+	 * Method to navigate to Event Rate page from home page
+	 * 
+	 * Author : Lakshmi N Ayyagari
+	 */
+	public OD_EventRatesPage navigateToEventRatesPage() {
+		waitForElementTobeDisplayed(dd_Manage);
+		clickOnButton(dd_Manage, "Manage menu");
+		clickOnButton(link_EventRates, "Event Rates sub-menu");
+		return new OD_EventRatesPage();
+	}
+
 	/*
 	 * Method to navigate to Venues page from home page
 	 * 

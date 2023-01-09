@@ -4,8 +4,10 @@ import org.testng.annotations.Test;
 
 import components.BaseClass;
 import components.Constants;
+import dataModel.OD.EventRates;
 import dataModel.OD.Location;
 import dataModel.OD.Market;
+import pageObjects.OD.OD_EventRatesPage;
 import pageObjects.OD.OD_HomePage;
 import pageObjects.OD.OD_LocationsPage;
 import pageObjects.OD.OD_LoginPage;
@@ -23,8 +25,8 @@ public class Manage_Menu_Testcases extends BaseClass {
 	OD_VenuesPage venuesPage = new OD_VenuesPage();
 	OD_LocationsPage locationsPage = new OD_LocationsPage();
 	OD_VirtualLocationsPage vl_Page = new OD_VirtualLocationsPage();
+	OD_EventRatesPage eventRates_page = new OD_EventRatesPage();
 
-	
 	// ****************** TEST SCRIPTS ****************************//
 	/*
 	 * This is a test case to create Market
@@ -81,13 +83,25 @@ public class Manage_Menu_Testcases extends BaseClass {
 		vl_Page.create_VirtualLocation(vl_name, Constants.VIRTUAL_LOCATIONS);
 
 	}
-	
-	
+
 	/*
-	 * TC_04_Create_EventRate
-	 * TC_05_Create_Blockout
-	 * TC_06_Create_Whitelist
-	 * TC_07_Create_Promocode
+	 * This is a test case to create EventRate()
+	 * 
+	 * Author : Lakshmi N Ayyagari
+	 */
+	@Test(groups = { "smoke", "regression" })
+	public void TC_04_Create_EventRate() {
+		EventRates eventRate = xml_Ops.getEventRatesTestData();
+		loginPage = launch_OD_Application();
+		homePage = loginPage.login();
+		eventRates_page = homePage.navigateToEventRatesPage();
+
+		eventRates_page.create_newevent(eventRate);
+
+	}
+
+	/*
+	 * TC_05_Create_Blockout TC_06_Create_Whitelist TC_07_Create_Promocode
 	 * TC_08_Create_User
 	 */
 
